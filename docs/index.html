@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CubeSat OBC | NHSAST Space Project</title>
+    <title>AndimaSat | NHSAST CubeSat Project</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -14,16 +15,19 @@
             <div class="nav-content">
                 <div class="logo">
                     <span class="logo-icon">🛰️</span>
-                    <span class="logo-text">CubeSat OBC</span>
+                    <span class="logo-text">AndimaSat</span>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#subsystems">Subsystems</a></li>
                     <li><a href="#timeline">Timeline</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </nav>
@@ -32,61 +36,152 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">✨ Officially Accepted Project</div>
-                <h1>On-Board Computer <span class="highlight">for a 1U CubeSat</span></h1>
+                <div class="hero-badge">✨ A Capstone Project</div>
+                <h1>AlgSat-1 <span class="highlight">Algeria's First Student CubeSat</span></h1>
                 <p class="hero-description">
-                    Building the brain of Algeria's first student-built CubeSat. 
-                    An open-source, fault-tolerant OBC based on STM32 ARM Cortex-M4.
+                    A fully functional 3U CubeSat designed and built by NHSAST students. 
+                    Featuring OBC, ADCS, power management, communication, and scientific payload.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#about" class="btn btn-primary">Learn More</a>
-                    <a href="#" class="btn btn-secondary">GitHub Repository</a>
+                    <a href="#mission" class="btn btn-primary">Explore Mission</a>
+                    <a href="#subsystems" class="btn btn-secondary">See Subsystems</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number">STM32F4</span>
-                        <span class="stat-label">Microcontroller</span>
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Subsystems</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">FreeRTOS</span>
-                        <span class="stat-label">Real-Time OS</span>
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Team Members</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">168 MHz</span>
-                        <span class="stat-label">Processing Speed</span>
+                        <span class="stat-number">2026-28</span>
+                        <span class="stat-label">Timeline</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
         <div class="container">
             <div class="section-header">
-                <h2>About the Project</h2>
+                <h2>Mission Overview</h2>
                 <div class="underline"></div>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>What is a CubeSat OBC?</h3>
-                    <p>The On-Board Computer (OBC) is the central nervous system of any satellite. It handles command execution, data acquisition, storage, and coordination of all subsystems. Without a reliable OBC, a CubeSat cannot function in space.</p>
-                    
-                    <h3>Why This Matters</h3>
-                    <p>CubeSats provide data for precision agriculture, disaster monitoring, environmental protection, and remote connectivity — areas vital to Algeria's development. This project builds local expertise in space technology and creates a foundation for future Algerian student satellite missions.</p>
-                    
-                    <h3>Technical Approach</h3>
-                    <p>We are designing a custom PCB based on the STM32F407VGT6 microcontroller, running FreeRTOS for real-time multitasking. The system includes external memory, multiple communication interfaces (I²C, SPI, UART, CAN), and fault-tolerant features like a watchdog timer.</p>
+            <div class="mission-content">
+                <p>AndimaSat is a 3x1U CubeSat 1U=(10×10×10 cm) designed to demonstrate autonomous space operations and provide real‑world data for Algerian agriculture, disaster monitoring, and environmental research. The satellite will be developed over two years, with each subsystem built in parallel by specialized student teams.</p>
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Technology Demonstration</h3>
+                        <p>Prove low‑cost, fault‑tolerant CubeSat design using COTS components.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-seedling"></i>
+                        <h3>Agriculture Monitoring</h3>
+                        <p>Multispectral imaging for crop health and irrigation optimization.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-charging-station"></i>
+                        <h3>Autonomous Operation</h3>
+                        <p>Full autonomy: detumbling, pointing, data handling, and fault recovery.</p>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <div class="cube-sat-illustration">
-                        <div class="cube">
-                            <div class="face front">OBC</div>
-                            <div class="face back"></div>
-                            <div class="face right"></div>
-                            <div class="face left"></div>
-                            <div class="face top"></div>
-                            <div class="face bottom"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subsystems Section -->
+    <section id="subsystems" class="subsystems">
+        <div class="container">
+            <div class="section-header">
+                <h2>CubeSat Subsystems</h2>
+                <div class="underline"></div>
+                <p>Six parallel work packages</p>
+            </div>
+            <div class="subsystems-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="obc">OBC</button>
+                    <button class="tab-btn" data-tab="adcs">ADCS</button>
+                    <button class="tab-btn" data-tab="eps">Power</button>
+                    <button class="tab-btn" data-tab="comms">Comms</button>
+                    <button class="tab-btn" data-tab="structure">Structure</button>
+                    <button class="tab-btn" data-tab="payload">Payload</button>
+                </div>
+                <div class="tab-contents">
+                    <div class="tab-content active" id="obc">
+                        <div class="subsystem-detail">
+                            <h3>On-Board Computer (OBC)</h3>
+                            <p>The brain of the satellite – STM32F407 ARM Cortex‑M4, FreeRTOS, external memory, and fault‑tolerant design. Handles command execution, telemetry, and subsystem coordination.</p>
+                            <ul>
+                                <li>168 MHz, 1 MB Flash, 192 KB RAM</li>
+                                <li>I²C, SPI, UART, CAN interfaces</li>
+                                <li>Watchdog timer and software recovery</li>
+                                <li>Open‑source firmware</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="adcs">
+                        <div class="subsystem-detail">
+                            <h3>Attitude Determination & Control (ADCS)</h3>
+                            <p>Keeps the satellite pointed correctly using magnetorquers, magnetometer, gyroscope, and control algorithms (B‑dot).</p>
+                            <ul>
+                                <li>3‑axis magnetometer & gyroscope (IMU)</li>
+                                <li>Magnetorquer coils for actuation</li>
+                                <li>Detumbling and pointing control</li>
+                                <li>Air‑bearing table validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="eps">
+                        <div class="subsystem-detail">
+                            <h3>Electrical Power System (EPS)</h3>
+                            <p>Generates, stores, and distributes power to all subsystems. Includes solar panels, battery, and power conditioning.</p>
+                            <ul>
+                                <li>Triple junction solar cells</li>
+                                <li>Li‑ion battery with charge controller</li>
+                                <li>Buck/boost converters (3.3V, 5V, 12V)</li>
+                                <li>Current/voltage monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="comms">
+                        <div class="subsystem-detail">
+                            <h3>Communication System (Comms)</h3>
+                            <p>UHF/VHF radio link with ground station. Deployable antenna and data encoding.</p>
+                            <ul>
+                                <li>433 MHz / 868 MHz transceiver</li>
+                                <li>Deployable dipole antenna (tape‑spring)</li>
+                                <li>AX.25 / CCSDS packet protocol</li>
+                                <li>Ground station with Yagi antenna</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="structure">
+                        <div class="subsystem-detail">
+                            <h3>Structure & Thermal</h3>
+                            <p>Mechanical chassis, vibration isolation, thermal control, and deployment mechanisms.</p>
+                            <ul>
+                                <li>Aluminium 6061 frame (1U standard)</li>
+                                <li>FEA for launch loads</li>
+                                <li>Passive thermal coating</li>
+                                <li>Solar panel hinges</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="payload">
+                        <div class="subsystem-detail">
+                            <h3>Scientific Payload</h3>
+                            <p>Multispectral camera for agriculture and environmental monitoring.</p>
+                            <ul>
+                                <li>5 MP CMOS sensor with RGB‑NIR filters</li>
+                                <li>On‑board image compression</li>
+                                <li>Temperature and humidity sensors</li>
+                                <li>Data downlink upon ground request</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -94,49 +189,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Key Features</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>STM32F407VG</h3>
-                    <p>168 MHz ARM Cortex-M4 with FPU, 1 MB Flash, 192 KB RAM. Flight heritage on NASA CubeSat missions.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>FreeRTOS</h3>
-                    <p>Real-time multitasking kernel for deterministic task scheduling and inter-task communication.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💾</div>
-                    <h3>Tiered Memory</h3>
-                    <p>64 MB SRAM, 1 GB NAND Flash, and microSD card slot for robust data storage.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔌</div>
-                    <h3>Multiple Interfaces</h3>
-                    <p>I²C, SPI, UART, CAN, USB — compatible with standard CubeSat subsystems.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Fault Tolerance</h3>
-                    <p>External watchdog timer, current limiting, and software-based recovery mechanisms.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔋</div>
-                    <h3>Power Management</h3>
-                    <p>Efficient buck converter (16.8V → 3.3V) with load switching and current monitoring.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
+    <!-- Timeline Section (same as before, keep) -->
     <section id="timeline" class="timeline">
         <div class="container">
             <div class="section-header">
@@ -149,7 +202,7 @@
                     <div class="timeline-date">Mar – Jun 2026</div>
                     <div class="timeline-content">
                         <h3>Design Phase</h3>
-                        <p>Component selection, schematic design, PCB layout, and design review.</p>
+                        <p>Component selection, schematic design, PCB layout, and design review for all subsystems.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -157,7 +210,7 @@
                     <div class="timeline-date">Sep – Dec 2026</div>
                     <div class="timeline-content">
                         <h3>Prototyping</h3>
-                        <p>PCB fabrication, assembly, board bring-up, and basic firmware development.</p>
+                        <p>Individual subsystem prototypes: OBC, ADCS, EPS, Comms, Structure, Payload.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -165,7 +218,7 @@
                     <div class="timeline-date">Jan – Apr 2027</div>
                     <div class="timeline-content">
                         <h3>Integration & Testing</h3>
-                        <p>Full firmware, sensor integration, bench testing, and fault recovery validation.</p>
+                        <p>Integration of all subsystems, flat‑sat testing, environmental testing (thermal, vibration).</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -173,40 +226,8 @@
                     <div class="timeline-date">May – Jun 2027</div>
                     <div class="timeline-content">
                         <h3>Documentation & Demo</h3>
-                        <p>Final report, open-source release, and live demonstration.</p>
+                        <p>Final report, open‑source release, and live demonstration for faculty.</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Real-World Applications Section -->
-    <section class="applications">
-        <div class="container">
-            <div class="section-header">
-                <h2>Real-World Applications</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="apps-grid">
-                <div class="app-card">
-                    <div class="app-icon">🌾</div>
-                    <h3>Precision Agriculture</h3>
-                    <p>Monitor crop health, optimize irrigation, and predict yields using multispectral imaging from CubeSats.</p>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">🌊</div>
-                    <h3>Disaster Management</h3>
-                    <p>Rapid imaging after floods or earthquakes enables faster, more coordinated relief efforts.</p>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">🌳</div>
-                    <h3>Environmental Monitoring</h3>
-                    <p>Track deforestation, desertification, and water resources in real-time.</p>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">📡</div>
-                    <h3>Remote Connectivity</h3>
-                    <p>Provide IoT connectivity for remote sensors in areas without cellular coverage.</p>
                 </div>
             </div>
         </div>
@@ -218,34 +239,47 @@
             <div class="section-header">
                 <h2>The Team</h2>
                 <div class="underline"></div>
+                <p>Multidisciplinary students from Embedded Systems, Robotics, and Navigation & Control</p>
             </div>
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-avatar">AM</div>
                     <h3>Ayad Mohamed</h3>
-                    <p class="team-role">Team Lead & Embedded Systems</p>
-                    <p class="team-desc">STM32, FreeRTOS, PCB design, system architecture.</p>
+                    <p class="team-role">Team Lead & OBC</p>
+                    <p class="team-desc">Embedded Systems</p>
                 </div>
                 <div class="team-card">
-                    <div class="team-avatar">📢</div>
+                    <div class="team-avatar">TY</div>
                     <h3>Touhami Yassine</h3>
-                    <p class="team-role">Hardware Design</p>
-                    <p class="team-desc">PCB layout, component sourcing, assembly.</p>
+                    <p class="team-role">OBC and </p>
+                    <p class="team-desc">Embedded Systems</p>
                 </div>
                 <div class="team-card">
-                    <div class="team-avatar">📢</div>
-                    <h3>Boudraf Mahdi</h3>
-                    <p class="team-role">Firmware Development</p>
-                    <p class="team-desc">Driver development, RTOS tasks, testing.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">📢</div>
+                    <div class="team-avatar">AA</div>
                     <h3>Ayad Amine</h3>
-                    <p class="team-role">Testing & Documentation</p>
-                    <p class="team-desc">Test plans, documentation, website maintenance.</p>
+                    <p class="team-role">Communication System</p>
+                    <p class="team-desc">Embedded Systems</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">BM</div>
+                    <h3>Boudraf Mahdi</h3>
+                    <p class="team-role">ADCS</p>
+                    <p class="team-desc">Robotics Design</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AA</div>
+                    <h3>Arif Ayoub</h3>
+                    <p class="team-role">Structure & Thermal</p>
+                    <p class="team-desc">Navigation & Control </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">HA</div>
+                    <h3>Hammani Abderrahmen</h3>
+                    <p class="team-role">Scientific Payload</p>
+                    <p class="team-desc">Embedded Systems</p>
                 </div>
             </div>
-            <p class="join-message">Interested in joining? <a href="#contact">Contact us →</a></p>
+            <p class="join-message">Interested in contributing? <a href="#contact">Contact us →</a></p>
         </div>
     </section>
 
@@ -285,7 +319,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 CubeSat OBC Project – NHSAST. Open-source under MIT License.</p>
+            <p>&copy; 2026 AndimaSat CubeSat Project – NHSAST. Open-source under MIT License.</p>
         </div>
     </footer>
 
