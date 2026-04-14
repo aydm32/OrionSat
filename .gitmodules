@@ -1,0 +1,6 @@
+[submodule "firmware/Drivers"]
+	path = firmware/Drivers
+	url = https://github.com/STMicroelectronics/STM32CubeF4
+[submodule "firmware/FreeRTOS"]
+	path = firmware/FreeRTOS
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
