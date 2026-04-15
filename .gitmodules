@@ -1,6 +1,6 @@
-[submodule "firmware/Drivers"]
-	path = firmware/Drivers
-	url = https://github.com/STMicroelectronics/STM32CubeF4
 [submodule "firmware/FreeRTOS"]
 	path = firmware/FreeRTOS
 	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+[submodule "firmware/Drivers/STM32F4xx_HAL_Driver"]
+	path = firmware/Drivers/STM32F4xx_HAL_Driver
+	url = https://github.com/STMicroelectronics/stm32f4xx-hal-driver.git
