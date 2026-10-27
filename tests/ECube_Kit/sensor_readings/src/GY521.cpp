@@ -12,42 +12,37 @@
 #include <GY521.h>
 
 bool MPU6050::begin(mpu6050_dps_t scale, mpu6050_range_t range, int mpua) {
-  // Set Address
+  Serial.println("MPU_DBG: Setting address");
   mpuAddress = mpua;
-#define SDA_PIN 36 // Change this to your desired SDA pin
-#define SCL_PIN 35 // Change this to your desired SCL pin
-  Wire.begin(SDA_PIN, SCL_PIN);
 
-  // Reset calibrate values
-  dg.XAxis = 0;
-  dg.YAxis = 0;
-  dg.ZAxis = 0;
-  useCalibrate = false;
+  // Removed Wire.begin(SDA_PIN, SCL_PIN) here because main.cpp already did it!
 
-  // Reset threshold values
-  tg.XAxis = 0;
-  tg.YAxis = 0;
-  tg.ZAxis = 0;
-  actualThreshold = 0;
+  Serial.println("MPU_DBG: Checking WHO_AM_I");
+  uint8_t who = fastRegister8(MPU6050_REG_WHO_AM_I);
+  Serial.print("MPU_DBG: WHO_AM_I = 0x");
+  Serial.println(who, HEX);
 
-  // Check MPU6050 Who Am I Register
-  if (fastRegister8(MPU6050_REG_WHO_AM_I) != 0x68) {
+  // Accept genuine MPU6050 (0x68) and common clones/MPU6500 (0x70, 0x98)
+  if (who != 0x68 && who != 0x70 && who != 0x98) {
+    Serial.println("MPU_DBG: Invalid WHO_AM_I");
     return false;
   }
 
-  // Set Clock Source
+  Serial.println("MPU_DBG: Setting Clock");
   setClockSource(MPU6050_CLOCK_PLL_XGYRO);
 
-  // Set Scale & Range
+  Serial.println("MPU_DBG: Setting Scale");
   setScale(scale);
+
+  Serial.println("MPU_DBG: Setting Range");
   setRange(range);
 
-  // Disable Sleep Mode
+  Serial.println("MPU_DBG: Waking up");
   setSleepEnabled(false);
 
+  Serial.println("MPU_DBG: Begin complete!");
   return true;
 }
-
 void MPU6050::setScale(mpu6050_dps_t scale) {
   uint8_t value;
 
@@ -285,36 +280,26 @@ Activites MPU6050::readActivites(void) {
   return a;
 }
 
+// Read Raw Accelerometer
 Vector MPU6050::readRawAccel(void) {
   Wire.beginTransmission(mpuAddress);
-#if ARDUINO >= 100
   Wire.write(MPU6050_REG_ACCEL_XOUT_H);
-#else
-  Wire.send(MPU6050_REG_ACCEL_XOUT_H);
-#endif
   Wire.endTransmission();
 
-  Wire.beginTransmission(mpuAddress);
-  Wire.requestFrom(mpuAddress, 6);
+  Wire.requestFrom(mpuAddress, 6); // Request 6 bytes
 
-  while (Wire.available() < 6)
-    ;
+  unsigned long timeout = millis();
+  while (Wire.available() < 6) {
+    if (millis() - timeout > 50)
+      return ra; // Safe timeout
+  }
 
-#if ARDUINO >= 100
   uint8_t xha = Wire.read();
   uint8_t xla = Wire.read();
   uint8_t yha = Wire.read();
   uint8_t yla = Wire.read();
   uint8_t zha = Wire.read();
   uint8_t zla = Wire.read();
-#else
-  uint8_t xha = Wire.receive();
-  uint8_t xla = Wire.receive();
-  uint8_t yha = Wire.receive();
-  uint8_t yla = Wire.receive();
-  uint8_t zha = Wire.receive();
-  uint8_t zla = Wire.receive();
-#endif
 
   ra.XAxis = (int16_t)(xha << 8 | xla);
   ra.YAxis = (int16_t)(yha << 8 | yla);
@@ -343,36 +328,26 @@ Vector MPU6050::readScaledAccel(void) {
   return na;
 }
 
+// Read Raw Gyro
 Vector MPU6050::readRawGyro(void) {
   Wire.beginTransmission(mpuAddress);
-#if ARDUINO >= 100
   Wire.write(MPU6050_REG_GYRO_XOUT_H);
-#else
-  Wire.send(MPU6050_REG_GYRO_XOUT_H);
-#endif
   Wire.endTransmission();
 
-  Wire.beginTransmission(mpuAddress);
-  Wire.requestFrom(mpuAddress, 6);
+  Wire.requestFrom(mpuAddress, 6); // Request 6 bytes
 
-  while (Wire.available() < 6)
-    ;
+  unsigned long timeout = millis();
+  while (Wire.available() < 6) {
+    if (millis() - timeout > 50)
+      return rg; // Safe timeout
+  }
 
-#if ARDUINO >= 100
   uint8_t xha = Wire.read();
   uint8_t xla = Wire.read();
   uint8_t yha = Wire.read();
   uint8_t yla = Wire.read();
   uint8_t zha = Wire.read();
   uint8_t zla = Wire.read();
-#else
-  uint8_t xha = Wire.receive();
-  uint8_t xla = Wire.receive();
-  uint8_t yha = Wire.receive();
-  uint8_t yla = Wire.receive();
-  uint8_t zha = Wire.receive();
-  uint8_t zla = Wire.receive();
-#endif
 
   rg.XAxis = (int16_t)(xha << 8 | xla);
   rg.YAxis = (int16_t)(yha << 8 | yla);
@@ -532,50 +507,39 @@ void MPU6050::setThreshold(uint8_t multiple) {
 // Fast read 8-bit from register
 uint8_t MPU6050::fastRegister8(uint8_t reg) {
   uint8_t value;
-
   Wire.beginTransmission(mpuAddress);
-#if ARDUINO >= 100
   Wire.write(reg);
-#else
-  Wire.send(reg);
-#endif
-  Wire.endTransmission();
+  Wire.endTransmission(); // Send the register address
 
-  Wire.beginTransmission(mpuAddress);
-  Wire.requestFrom(mpuAddress, 1);
-#if ARDUINO >= 100
+  Wire.requestFrom(mpuAddress,
+                   1); // Request 1 byte (DO NOT call beginTransmission here)
+
+  unsigned long timeout = millis();
+  while (!Wire.available()) {
+    if (millis() - timeout > 50)
+      return 0; // Safe timeout
+  }
+
   value = Wire.read();
-#else
-  value = Wire.receive();
-#endif
-  Wire.endTransmission();
-
   return value;
 }
 
 // Read 8-bit from register
 uint8_t MPU6050::readRegister8(uint8_t reg) {
   uint8_t value;
-
   Wire.beginTransmission(mpuAddress);
-#if ARDUINO >= 100
   Wire.write(reg);
-#else
-  Wire.send(reg);
-#endif
   Wire.endTransmission();
 
-  Wire.beginTransmission(mpuAddress);
-  Wire.requestFrom(mpuAddress, 1);
+  Wire.requestFrom(mpuAddress, 1); // Request 1 byte
+
+  unsigned long timeout = millis();
   while (!Wire.available()) {
-  };
-#if ARDUINO >= 100
-  value = Wire.read();
-#else
-  value = Wire.receive();
-#endif
-  Wire.endTransmission();
+    if (millis() - timeout > 50)
+      return 0;
+  }
 
+  value = Wire.read();
   return value;
 }
 
